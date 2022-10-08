@@ -3,6 +3,7 @@ package com.example.daytoday.services;
 import com.example.daytoday.dao.UserDao;
 import com.example.daytoday.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -15,7 +16,7 @@ public class UserService {
     private final UserDao userDao;
 
     @Autowired
-    public UserService(UserDao userDao) {
+    public UserService(@Qualifier("userRepo") UserDao userDao) {
         this.userDao = userDao;
     }
 

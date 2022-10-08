@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
-@Repository
+@Repository("userRepo")
 public class userDataService implements UserDao {
 
     private final UserMongoRepo userRepo;
