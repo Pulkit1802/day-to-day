@@ -15,28 +15,28 @@ import java.util.Optional;
 public class workControllers {
     public final WorkService workService;
 
-//    @GetMapping
-//    public List<Work> fetchAllWorks() {
-//        return workService.fetchAllWorks();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public Optional<Work> getSingleWork(@PathVariable("id") String id) {
-//        return workService.getWork(id);
-//    }
+    @GetMapping
+    public List<Work> fetchAllWorks() {
+        return workService.fetchAllWorks();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Work> getSingleWork(@PathVariable("id") String id) {
+        return workService.getWork(id);
+    }
 
     @PostMapping
     public final Work createNewWork(@RequestBody Work work) {
         return workService.newWork(work);
     }
 
-//    @PatchMapping("/{id}")
-//    public Optional<Work> updateWork(@PathVariable("id") String id, @RequestBody Map<Object, Object> fields) {
-//        return workService.updateWork(id, fields);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public final int DeleteWork(@PathVariable("id") String id) {
-//        return workService.deleteWork(id);
-//    }
+    @PatchMapping("/{id}")
+    public Optional<Work> updateWork(@PathVariable("id") String id, @RequestBody Map<Object, Object> fields) {
+        return workService.updateWork(id, fields);
+    }
+
+    @DeleteMapping("/{id}")
+    public final int DeleteWork(@PathVariable("id") String id) {
+        return workService.deleteWork(id);
+    }
 }

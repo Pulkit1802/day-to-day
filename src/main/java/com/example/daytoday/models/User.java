@@ -1,9 +1,7 @@
 package com.example.daytoday.models;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -22,12 +20,12 @@ public class User {
 
     private List<String> skills;
 
-    private List<UUID> workIds;
+    private List<String> workIds;
 
     private Double rating;
 
 
-    public User(UUID id, String name, String phoneNumber, String email, Boolean isWorker, List<Double> cords, List<String> skills, List<UUID> workIds, Double rating) {
+    public User(UUID id, String name, String phoneNumber, String email, Boolean isWorker, List<Double> cords, List<String> skills, List<String> workIds, Double rating) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;

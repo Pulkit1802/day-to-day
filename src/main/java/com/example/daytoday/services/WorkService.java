@@ -24,20 +24,20 @@ public class WorkService {
         return workDao.createWork(work);
     }
 
-//    public final List<Work> fetchAllWorks() {
-//        return workDao.fetchAllWorks();
-//    }
-//
-//    public final int deleteWork(String id) {
-//        return workDao.deleteWork(id);
-//    }
-//
-//    public final Optional<Work> getWork(String id) {
-//        return workDao.fetchWork(id);
-//    }
-//
-//    public final Optional<Work> updateWork(String id, Map<Object, Object> fields) {
-//        return workDao.updateWork(id, fields);
-//    }
+    public final List<Work> fetchAllWorks() {
+        return workDao.fetchAllWorks();
+    }
+
+    public final Optional<Work> getWork(String id) {
+        return workDao.fetchWork(id);
+    }
+
+    public final int deleteWork(String id) {
+        return workDao.deleteWork(id);
+    }
+
+    public final Optional<Work> updateWork(String id, Map<Object, Object> fields) {
+        return workDao.updateWork(id, fields);
+    }
 
 }
