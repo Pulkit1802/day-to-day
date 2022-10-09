@@ -1,27 +1,32 @@
 package com.example.daytoday.dao;
 
-//import com.example.daytoday.models.User;
 import com.example.daytoday.models.Work;
-import com.example.daytoday.models.Work;
+import com.example.daytoday.repos.UserMongoRepo;
 import com.example.daytoday.repos.WorkMongoRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 @AllArgsConstructor
 @Repository("workRepo")
 public class workDataService implements WorkDao {
 
     private final WorkMongoRepo workRepo;
+    private final UserMongoRepo userRepo;
     @Override
-    public Work createWork(Work work) {
-        return workRepo.insert(work);
+    public Work createWork(String number, Work work) {
+        if(userRepo.findUserByPhoneNumber(number).isPresent()) {
+            work.setClientNumber(number);
+            return workRepo.insert(work);
+        }
+        else
+            return null;
     }
 
     @Override
@@ -57,9 +62,22 @@ public class workDataService implements WorkDao {
                 field.setAccessible(true);
                 ReflectionUtils.setField(field, work, value);
             });
-            deleteWork(id);
-            workRepo.insert(work);
+            workRepo.save(work);
         });
         return updateWork;
+    }
+
+    @Override
+    public int applyTo(String id, String number) {
+        final int[] workUpdated = {0};
+        workRepo.findById(id)
+            .ifPresent(
+                work -> {
+                    work.appendWorkRequestPool(number);
+                    workRepo.save(work);
+                    workUpdated[0] = 1;
+                }
+            );
+        return workUpdated[0];
     }
 }

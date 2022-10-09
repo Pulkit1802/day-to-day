@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface WorkDao {
-    Work createWork(Work work);
+    Work createWork(String number, Work work);
 
     List<Work> fetchAllWorks();
 
@@ -17,4 +17,7 @@ public interface WorkDao {
     Optional<Work> fetchWork(String id);
 
     Optional<Work> updateWork(String id, Map<Object, Object> fields);
+
+    int applyTo(String id, String number);
+
 }

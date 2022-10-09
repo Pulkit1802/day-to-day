@@ -25,9 +25,19 @@ public class workControllers {
         return workService.getWork(id);
     }
 
-    @PostMapping
-    public final Work createNewWork(@RequestBody Work work) {
-        return workService.newWork(work);
+    @GetMapping("/{id}/requestPool")
+    public List<String> getWorkRequestPool(@PathVariable("id") String id) {
+        return workService.getAllRequests(id);
+    }
+
+    @PostMapping("/{clientNumber}")
+    public final Work createNewWork(@PathVariable("clientNumber") String number, @RequestBody Work work) {
+        return workService.newWork(number, work);
+    }
+
+    @PostMapping("/{workId}/{workerNumber}")
+    public final int applyForWork(@PathVariable("workId") String id, @PathVariable("workerNumber") String workerNumber) {
+        return workService.applyTo(id, workerNumber);
     }
 
     @PatchMapping("/{id}")
