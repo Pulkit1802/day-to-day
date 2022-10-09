@@ -19,6 +19,7 @@ public class Work {
     private List<String> workRequestPool;
     private Double price;
     private Double rating;
+    private Double distance;
 
     private List<Double> coords;
     private Boolean isAvailable;
@@ -32,6 +33,7 @@ public class Work {
         this.workRequestPool = new ArrayList<>();
         this.price = price;
         this.rating = rating;
+        this.distance = 0.0;
         this.coords = new ArrayList<>();
         this.isAvailable = true;
         this.completed = false;

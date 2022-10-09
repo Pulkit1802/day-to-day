@@ -15,9 +15,9 @@ import java.util.Optional;
 public class workControllers {
     public final WorkService workService;
 
-    @GetMapping
-    public List<Work> fetchAllWorks() {
-        return workService.fetchAllWorks();
+    @GetMapping("/{workerNumber}/fetchWorks")
+    public List<Work> fetchAllWorks(@PathVariable("workerNumber") String number) {
+        return workService.fetchAllWorks(number);
     }
 
     @GetMapping("/{id}")

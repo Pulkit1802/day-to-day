@@ -24,6 +24,7 @@ public class User {
     private List<String> workIds;
 
     private Double rating;
+    private Double distance;
 
 
     public User(String name, String phoneNumber, String email) {
@@ -34,6 +35,7 @@ public class User {
         this.cords = new ArrayList<>();
         this.skills = new ArrayList<>();
         this.workIds = new ArrayList<>();
+        this.distance = 0.0;
         this.rating = 0.0;
     }
 
