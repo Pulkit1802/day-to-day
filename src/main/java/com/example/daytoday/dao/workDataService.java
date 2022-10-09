@@ -100,4 +100,14 @@ public class workDataService implements WorkDao {
 
         return workAccepted[0];
     }
+
+    @Override
+    public List<Work> getWorkByUserNumber(String number) {
+        Optional<User> user = userRepo.findUserByPhoneNumber(number);
+        if(user.isPresent()) {
+            return workRepo.findWorksByClientNumber(number);
+        } {
+            return new ArrayList<>();
+        }
+    }
 }

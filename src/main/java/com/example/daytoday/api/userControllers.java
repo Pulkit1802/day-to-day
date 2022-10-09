@@ -1,6 +1,7 @@
 package com.example.daytoday.api;
 
 import com.example.daytoday.models.User;
+import com.example.daytoday.models.Work;
 import com.example.daytoday.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,12 @@ public class userControllers {
 
     @GetMapping("/{number}")
     public Optional<User> getSingleUser(@PathVariable("number") String number) {
-        System.out.println(number);
         return userService.getOneUser(number);
+    }
+
+    @GetMapping("/{number}/works")
+    public List<Work> getAllUserWorks(@PathVariable("number") String number) {
+        return userService.getUserWorks(number);
     }
 
     @PostMapping

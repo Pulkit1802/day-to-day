@@ -22,4 +22,6 @@ public interface WorkDao {
 
     int acceptWorker(String id, String number);
 
+    List<Work> getWorkByUserNumber(String number);
+
 }

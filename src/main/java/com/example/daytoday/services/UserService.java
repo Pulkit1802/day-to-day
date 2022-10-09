@@ -1,7 +1,9 @@
 package com.example.daytoday.services;
 
 import com.example.daytoday.dao.UserDao;
+import com.example.daytoday.dao.WorkDao;
 import com.example.daytoday.models.User;
+import com.example.daytoday.models.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,12 @@ import java.util.Optional;
 public class UserService {
     private final UserDao userDao;
 
+    private final WorkDao workDao;
+
     @Autowired
-    public UserService(@Qualifier("userRepo") UserDao userDao) {
+    public UserService(@Qualifier("userRepo") UserDao userDao, @Qualifier("workRepo") WorkDao workDao) {
         this.userDao = userDao;
+        this.workDao = workDao;
     }
 
     public final User insertUser(User newUser) {
@@ -38,6 +43,10 @@ public class UserService {
 
     public final Optional<User> updateUser (String phoneNumber, Map<Object, Object> fields) {
         return userDao.updateUser(phoneNumber, fields);
+    }
+
+    public final List<Work> getUserWorks(String number) {
+        return workDao.getWorkByUserNumber(number);
     }
 
 }

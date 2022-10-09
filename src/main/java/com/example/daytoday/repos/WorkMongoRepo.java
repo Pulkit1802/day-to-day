@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface WorkMongoRepo extends MongoRepository<Work, String> {
-
+    List<Work> findWorksByClientNumber(String number);
 }
