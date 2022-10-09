@@ -17,6 +17,7 @@ public class Work {
     private String workDescription;
     private String feedback;
     private List<String> workRequestPool;
+    private List<String > requiredSkills;
     private Double price;
     private Double rating;
     private Double distance;
@@ -31,6 +32,7 @@ public class Work {
         this.workDescription = workDescription;
         this.feedback = feedback;
         this.workRequestPool = new ArrayList<>();
+        this.requiredSkills = new ArrayList<>();
         this.price = price;
         this.rating = rating;
         this.distance = 0.0;

@@ -1,5 +1,6 @@
 package com.example.daytoday.api;
 
+import com.example.daytoday.models.Filter;
 import com.example.daytoday.models.Work;
 import com.example.daytoday.services.WorkService;
 import lombok.AllArgsConstructor;
@@ -17,12 +18,12 @@ public class workControllers {
 
     @GetMapping("/fetchWorks")
     public List<Work> fetchWorks() {
-        return workService.fetchAllWorks(null);
+        return workService.fetchAllWorks(null, null);
     }
 
     @GetMapping("/fetchWorks/{workerNumber}")
     public List<Work> fetchAllWorks(@PathVariable("workerNumber") String number) {
-        return workService.fetchAllWorks(number);
+        return workService.fetchAllWorks(number, null);
     }
 
     @GetMapping("/{id}")
@@ -48,6 +49,11 @@ public class workControllers {
     @PostMapping ("/{id}/requestPool/{workerNumber}")
     public final int acceptWorker(@PathVariable("id") String id, @PathVariable("workerNumber") String number) {
         return workService.acceptWorker(id, number);
+    }
+
+    @PostMapping("/fetchWorks/{workerNumber}")
+    public final List<Work> getFilteredWorks(@PathVariable("workerNumber") String number, @RequestBody Filter filter) {
+        return workService.fetchAllWorks(number, filter);
     }
 
     @PatchMapping("/{id}")
