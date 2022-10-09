@@ -20,4 +20,6 @@ public interface WorkDao {
 
     int applyTo(String id, String number);
 
+    int acceptWorker(String id, String number);
+
 }

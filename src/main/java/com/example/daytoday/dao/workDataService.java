@@ -1,5 +1,6 @@
 package com.example.daytoday.dao;
 
+import com.example.daytoday.models.User;
 import com.example.daytoday.models.Work;
 import com.example.daytoday.repos.UserMongoRepo;
 import com.example.daytoday.repos.WorkMongoRepo;
@@ -79,5 +80,24 @@ public class workDataService implements WorkDao {
                 }
             );
         return workUpdated[0];
+    }
+
+    @Override
+    public int acceptWorker(String id, String number) {
+        final int[] workAccepted = {0};
+
+        Optional<Work> work = workRepo.findById(id);
+        Optional<User> user = userRepo.findUserByPhoneNumber(number);
+
+        if(user.isPresent() && work.isPresent() && user.get().getIsWorker()) {
+            user.get().addWorkId(id);
+            work.get().setIsAvailable(false);
+            work.get().setWorkerNumber(number);
+            workAccepted[0] = 1;
+            workRepo.save(work.get());
+            userRepo.save(user.get());
+        }
+
+        return workAccepted[0];
     }
 }

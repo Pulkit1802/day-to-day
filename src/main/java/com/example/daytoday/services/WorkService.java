@@ -53,4 +53,8 @@ public class WorkService {
         }
     }
 
+    public final int acceptWorker(String id, String number) {
+        return workDao.acceptWorker(id, number);
+    }
+
 }

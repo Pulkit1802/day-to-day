@@ -40,6 +40,11 @@ public class workControllers {
         return workService.applyTo(id, workerNumber);
     }
 
+    @PostMapping ("/{id}/requestPool/{workerNumber}")
+    public final int acceptWorker(@PathVariable("id") String id, @PathVariable("workerNumber") String number) {
+        return workService.acceptWorker(id, number);
+    }
+
     @PatchMapping("/{id}")
     public Optional<Work> updateWork(@PathVariable("id") String id, @RequestBody Map<Object, Object> fields) {
         return workService.updateWork(id, fields);

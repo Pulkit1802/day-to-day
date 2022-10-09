@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,20 +26,23 @@ public class User {
     private Double rating;
 
 
-    public User(UUID id, String name, String phoneNumber, String email, Boolean isWorker, List<Double> cords, List<String> skills, List<String> workIds, Double rating) {
-        this.id = id;
+    public User(String name, String phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.isWorker = isWorker;
-        this.cords = cords;
-        this.skills = skills;
-        this.workIds = workIds;
-        this.rating = rating;
+        this.isWorker = false;
+        this.cords = new ArrayList<>();
+        this.skills = new ArrayList<>();
+        this.workIds = new ArrayList<>();
+        this.rating = 0.0;
     }
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public void addWorkId(String id) {
+        this.workIds.add(id);
     }
 
 }
