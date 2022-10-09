@@ -29,23 +29,26 @@ public class WorkService {
     public final List<Work> fetchAllWorks(String number) {
         List<Work> works = workDao.fetchAllWorks();
 
-        Optional<User> user = userDao.getSingleUser(number);
+        if(number != null) {
+            Optional<User> user = userDao.getSingleUser(number);
 
-        user.ifPresent(
-                u -> {
-                    works.forEach(work -> work.setDistance(
-                        2*6713*Math.asin(Math.sqrt(
-                            (
-                                Math.sin((work.getCoords().get(0) - u.getCords().get(0))/2)*Math.sin((work.getCoords().get(0) - u.getCords().get(0))/2)
-                                + Math.cos(work.getCoords().get(0))*Math.cos(u.getCords().get(0))
-                                * Math.sin((work.getCoords().get(1) - u.getCords().get(1))/2)*Math.sin((work.getCoords().get(1) - u.getCords().get(1))/2)
-                            )
-                        ) )
-                    ));
-                }
-        );
+            user.ifPresent(
+                    u -> {
+                        works.forEach(work -> work.setDistance(
+                            2*6713*Math.asin(Math.sqrt(
+                                (
+                                    Math.sin((work.getCoords().get(0) - u.getCords().get(0))/2)*Math.sin((work.getCoords().get(0) - u.getCords().get(0))/2)
+                                        + Math.cos(work.getCoords().get(0))*Math.cos(u.getCords().get(0))
+                                        * Math.sin((work.getCoords().get(1) - u.getCords().get(1))/2)*Math.sin((work.getCoords().get(1) - u.getCords().get(1))/2)
+                                )
+                            ) )
+                        ));
+                    }
+            );
 
-        works.sort(Comparator.comparingDouble(Work::getDistance));
+            works.sort(Comparator.comparingDouble(Work::getDistance));
+        }
+
         return works;
     }
 
